@@ -2,7 +2,7 @@
 // Komponen utama — mengelola state dan routing antar tab soal.
 // ============================================================
 
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import FormKredit from "./components/FormKredit";
 import HasilKalkulasi from "./components/HasilKalkulasi";
 import TabelJadwal from "./components/TabelJadwal";
