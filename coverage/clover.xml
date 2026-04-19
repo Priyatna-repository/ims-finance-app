@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1776635661554" clover="3.2.0">
+  <project timestamp="1776635661554" name="All files">
+    <metrics statements="62" coveredstatements="62" conditionals="58" coveredconditionals="52" methods="15" coveredmethods="15" elements="135" coveredelements="129" complexity="0" loc="62" ncloc="62" packages="3" files="5" classes="5"/>
+    <package name="src">
+      <metrics statements="23" coveredstatements="23" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
+      <file name="App.jsx" path="/home/priyatna/Downloads/soal/ims-finance-app/src/App.jsx">
+        <metrics statements="23" coveredstatements="23" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
+        <line num="25" count="59" type="stmt"/>
+        <line num="35" count="59" type="stmt"/>
+        <line num="38" count="59" type="stmt"/>
+        <line num="45" count="9" type="stmt"/>
+        <line num="46" count="9" type="stmt"/>
+        <line num="48" count="9" type="stmt"/>
+        <line num="57" count="22" type="stmt"/>
+        <line num="59" count="22" type="cond" truecount="2" falsecount="0"/>
+        <line num="61" count="4" type="stmt"/>
+        <line num="62" count="4" type="stmt"/>
+        <line num="66" count="18" type="stmt"/>
+        <line num="69" count="18" type="stmt"/>
+        <line num="70" count="18" type="stmt"/>
+        <line num="71" count="18" type="stmt"/>
+        <line num="74" count="18" type="stmt"/>
+        <line num="75" count="18" type="stmt"/>
+        <line num="76" count="18" type="stmt"/>
+        <line num="77" count="18" type="stmt"/>
+        <line num="78" count="18" type="stmt"/>
+        <line num="79" count="18" type="stmt"/>
+        <line num="82" count="18" type="stmt"/>
+        <line num="90" count="18" type="stmt"/>
+        <line num="104" count="59" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components">
+      <metrics statements="4" coveredstatements="4" conditionals="24" coveredconditionals="18" methods="4" coveredmethods="4"/>
+      <file name="FormKredit.jsx" path="/home/priyatna/Downloads/soal/ims-finance-app/src/components/FormKredit.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="24" coveredconditionals="18" methods="1" coveredmethods="1"/>
+        <line num="13" count="59" type="stmt"/>
+      </file>
+      <file name="HasilKalkulasi.jsx" path="/home/priyatna/Downloads/soal/ims-finance-app/src/components/HasilKalkulasi.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="13" count="18" type="stmt"/>
+      </file>
+      <file name="TabelJadwal.jsx" path="/home/priyatna/Downloads/soal/ims-finance-app/src/components/TabelJadwal.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="17" count="18" type="stmt"/>
+        <line num="38" count="336" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.utils">
+      <metrics statements="35" coveredstatements="35" conditionals="30" coveredconditionals="30" methods="7" coveredmethods="7"/>
+      <file name="kreditUtils.js" path="/home/priyatna/Downloads/soal/ims-finance-app/src/utils/kreditUtils.js">
+        <metrics statements="35" coveredstatements="35" conditionals="30" coveredconditionals="30" methods="7" coveredmethods="7"/>
+        <line num="12" count="24" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="18" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="29" count="22" type="stmt"/>
+        <line num="40" count="21" type="stmt"/>
+        <line num="63" count="23" type="stmt"/>
+        <line num="65" count="23" type="stmt"/>
+        <line num="66" count="23" type="stmt"/>
+        <line num="67" count="23" type="stmt"/>
+        <line num="86" count="19" type="stmt"/>
+        <line num="88" count="19" type="stmt"/>
+        <line num="90" count="19" type="stmt"/>
+        <line num="93" count="354" type="stmt"/>
+        <line num="96" count="354" type="stmt"/>
+        <line num="97" count="354" type="stmt"/>
+        <line num="98" count="354" type="stmt"/>
+        <line num="100" count="354" type="stmt"/>
+        <line num="108" count="19" type="stmt"/>
+        <line num="119" count="502" type="stmt"/>
+        <line num="133" count="35" type="stmt"/>
+        <line num="135" count="35" type="cond" truecount="4" falsecount="0"/>
+        <line num="136" count="4" type="stmt"/>
+        <line num="139" count="35" type="cond" truecount="4" falsecount="0"/>
+        <line num="140" count="2" type="stmt"/>
+        <line num="143" count="35" type="cond" truecount="5" falsecount="0"/>
+        <line num="144" count="6" type="stmt"/>
+        <line num="147" count="35" type="cond" truecount="2" falsecount="0"/>
+        <line num="153" count="4" type="stmt"/>
+        <line num="156" count="35" type="cond" truecount="5" falsecount="0"/>
+        <line num="157" count="2" type="stmt"/>
+        <line num="160" count="35" type="cond" truecount="2" falsecount="0"/>
+        <line num="161" count="2" type="stmt"/>
+        <line num="164" count="35" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

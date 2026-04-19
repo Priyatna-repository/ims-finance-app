@@ -1,0 +1,450 @@
+/* ============================================================
+   App.css — Styling aplikasi IMS Finance Calculator
+   ============================================================ */
+
+/* ── Reset & Base ──────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f9;
+  color: #1a1a2e;
+  line-height: 1.6;
+}
+
+/* ── Layout Utama ───────────────────────────────────────────── */
+.app-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 0 20px;
+  border-bottom: 2px solid #e63946;
+  margin-bottom: 24px;
+}
+
+.header-logo {
+  width: 52px;
+  height: 52px;
+  background-color: #e63946;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  letter-spacing: 1px;
+}
+
+.app-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.app-subtitle {
+  font-size: 14px;
+  color: #6c757d;
+  margin-top: 2px;
+}
+
+/* ── Card ────────────────────────────────────────────────────── */
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.result-card {
+  /* Sedikit aksen warna untuk kartu hasil */
+  border-top: 3px solid #e63946;
+}
+
+/* ── Section Title ───────────────────────────────────────────── */
+.section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-badge {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  background: #f1f3f5;
+  color: #495057;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0;
+  font-weight: 400;
+  text-transform: none;
+}
+
+/* ── Form ────────────────────────────────────────────────────── */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 20px;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #495057;
+  margin-bottom: 6px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1a1a2e;
+  background: #fff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: #e63946;
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.12);
+}
+
+/* Input dengan error */
+.field input.input-error,
+.field select.input-error {
+  border-color: #dc3545;
+}
+
+.error-msg {
+  display: block;
+  font-size: 12px;
+  color: #dc3545;
+  margin-top: 4px;
+}
+
+/* ── Tombol ──────────────────────────────────────────────────── */
+.btn-primary {
+  margin-top: 8px;
+  padding: 10px 28px;
+  background: #e63946;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btn-primary:hover {
+  background: #c1121f;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* ── Metric Cards ────────────────────────────────────────────── */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.metric {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+/* Metric terakhir (angsuran per bulan) — highlight merah */
+.metric-highlight {
+  background: #fff5f5;
+  border: 1px solid #ffb3b8;
+}
+
+.metric-label {
+  font-size: 12px;
+  color: #6c757d;
+  margin-bottom: 4px;
+}
+
+.metric-value {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.metric-highlight .metric-value {
+  color: #c1121f;
+}
+
+.metric-sub {
+  font-size: 11px;
+  color: #adb5bd;
+  margin-top: 3px;
+}
+
+/* ── Formula Box ─────────────────────────────────────────────── */
+.formula-box {
+  background: #f8f9fa;
+  border-left: 4px solid #e63946;
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #495057;
+  line-height: 1.6;
+}
+
+/* ── Tabel ───────────────────────────────────────────────────── */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.jadwal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.jadwal-table th {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6c757d;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8f9fa;
+}
+
+.jadwal-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f1f3f5;
+  color: #1a1a2e;
+}
+
+.jadwal-table tr:last-child td {
+  border-bottom: none;
+}
+
+.jadwal-table tr:hover td {
+  background: #fafafa;
+}
+
+/* Baris total di footer tabel */
+.total-row td {
+  background: #f1f3f5;
+  padding: 12px;
+  font-size: 14px;
+}
+
+/* Alignment helper */
+.center { text-align: center; }
+.right  { text-align: right; }
+.mono   { font-family: 'Courier New', monospace; }
+
+/* Badge nomor angsuran */
+.angsuran-badge {
+  display: inline-block;
+  background: #e9ecef;
+  color: #495057;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 999px;
+  min-width: 28px;
+  text-align: center;
+}
+
+/* ── Footer ──────────────────────────────────────────────────── */
+.app-footer {
+  text-align: center;
+  font-size: 12px;
+  color: #adb5bd;
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* ── Responsive — layar kecil ────────────────────────────────── */
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ── Tab Navigation ─────────────────────────────────────────── */
+.tab-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 8px 18px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  background: #fff;
+  color: #495057;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tab-btn:hover:not(.active) {
+  background: #f8f9fa;
+}
+
+.tab-btn.active {
+  background: #e63946;
+  color: #fff;
+  border-color: #e63946;
+}
+
+/* ── Info Box ────────────────────────────────────────────────── */
+.info-box {
+  background: #fff8e1;
+  border-left: 4px solid #f59e0b;
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #495057;
+  line-height: 1.6;
+}
+
+.info-title {
+  font-weight: 600;
+  color: #92400e;
+  margin-bottom: 6px;
+}
+
+/* ── Code Block ──────────────────────────────────────────────── */
+.code-block {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-x: auto;
+  white-space: pre;
+  margin: 0;
+}
+
+/* ── Result Highlight ────────────────────────────────────────── */
+.result-highlight {
+  color: #c1121f !important;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* ── Overdue row ─────────────────────────────────────────────── */
+.row-overdue {
+  background: #fff5f5;
+}
+
+/* ── Badge merah untuk angsuran terlambat ────────────────────── */
+.badge-red {
+  background: #fee2e2 !important;
+  color: #c1121f !important;
+}
+
+/* ── Pill danger ─────────────────────────────────────────────── */
+.pill-danger {
+  display: inline-block;
+  background: #fee2e2;
+  color: #c1121f;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+/* ── Nilai denda merah ───────────────────────────────────────── */
+.denda-value {
+  color: #c1121f !important;
+  font-weight: 600;
+}
+
+/* ── Kartu rincian denda ─────────────────────────────────────── */
+.denda-card {
+  background: #fff5f5;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 14px 16px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.denda-card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #c1121f;
+  margin-bottom: 4px;
+}
+
+.denda-card-sub {
+  font-size: 12px;
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+.denda-card-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.denda-op {
+  color: #adb5bd;
+  font-weight: 400;
+}
+
+.denda-result {
+  font-weight: 700;
+  color: #c1121f;
+  margin-left: 4px;
+}
