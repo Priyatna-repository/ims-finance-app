@@ -1,3 +1,8 @@
+// ============================================================
+// Integration test — menguji interaksi user dengan UI
+// Jalankan dengan: npm test
+// ============================================================
+
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";

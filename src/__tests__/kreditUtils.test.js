@@ -1,3 +1,8 @@
+// ============================================================
+// Unit test untuk semua fungsi kalkulasi di kreditUtils.js
+// Jalankan dengan: npm test
+// ============================================================
+
 import {
   getBunga,
   hitungDP,
@@ -268,5 +273,104 @@ describe("validateForm()", () => {
       dp_pct: "", jangka: "", start_date: "",
     });
     expect(Object.keys(errors).length).toBeGreaterThanOrEqual(5);
+  });
+});
+
+// ─────────────────────────────────────────
+// TEST: queryTotalJatuhTempo (Soal 2)
+// ─────────────────────────────────────────
+import { queryTotalJatuhTempo, queryDendaKeterlambatan } from "../utils/kreditUtils";
+
+// Jadwal tetap sesuai soal: 18 angsuran mulai 25 Jan 2024, Rp 12.906.667/bulan
+const JADWAL_SOAL = generateJadwalAngsuran("AGR00001", 12_906_667, 18, "2024-01-25");
+
+describe("queryTotalJatuhTempo() — Soal 2", () => {
+  test("per 14 Agt 2024: angsuran ke-1 s/d ke-7 sudah jatuh tempo", () => {
+    const r = queryTotalJatuhTempo(JADWAL_SOAL, "SUGUS", "AGR00001", "2024-08-14");
+    expect(r.jumlah_angsuran).toBe(7);
+  });
+
+  test("total = 7 × 12.906.667 = 90.346.669", () => {
+    const r = queryTotalJatuhTempo(JADWAL_SOAL, "SUGUS", "AGR00001", "2024-08-14");
+    expect(r.total_angsuran_jatuh_tempo).toBe(7 * 12_906_667);
+  });
+
+  test("kontrak_no dan client_name terisi benar", () => {
+    const r = queryTotalJatuhTempo(JADWAL_SOAL, "SUGUS", "AGR00001", "2024-08-14");
+    expect(r.kontrak_no).toBe("AGR00001");
+    expect(r.client_name).toBe("SUGUS");
+  });
+
+  test("cutoff 25 Jan 2024: hanya 1 angsuran jatuh tempo", () => {
+    const r = queryTotalJatuhTempo(JADWAL_SOAL, "SUGUS", "AGR00001", "2024-01-25");
+    expect(r.jumlah_angsuran).toBe(1);
+  });
+
+  test("cutoff sebelum semua jadwal: 0 angsuran jatuh tempo", () => {
+    const r = queryTotalJatuhTempo(JADWAL_SOAL, "SUGUS", "AGR00001", "2024-01-01");
+    expect(r.jumlah_angsuran).toBe(0);
+    expect(r.total_angsuran_jatuh_tempo).toBe(0);
+  });
+});
+
+// ─────────────────────────────────────────
+// TEST: queryDendaKeterlambatan (Soal 3)
+// ─────────────────────────────────────────
+describe("queryDendaKeterlambatan() — Soal 3", () => {
+  const SUDAH_BAYAR = new Set([1, 2, 3, 4, 5]);
+  const hasil = queryDendaKeterlambatan(
+    JADWAL_SOAL, "SUGUS", "AGR00001", "2024-08-14", SUDAH_BAYAR
+  );
+
+  test("hanya 2 angsuran yang kena denda (ke-6 dan ke-7)", () => {
+    expect(hasil).toHaveLength(2);
+  });
+
+  test("angsuran ke-6 (jatuh tempo 25 Jun) = 50 hari keterlambatan", () => {
+    // 14 Agustus - 25 Juni = 50 hari
+    const row6 = hasil.find((r) => r.installment_no === 6);
+    expect(row6.hari_keterlambatan).toBe(50);
+  });
+
+  test("angsuran ke-7 (jatuh tempo 25 Jul) = 20 hari keterlambatan", () => {
+    // 14 Agustus - 25 Juli = 20 hari
+    const row7 = hasil.find((r) => r.installment_no === 7);
+    expect(row7.hari_keterlambatan).toBe(20);
+  });
+
+  test("denda angsuran ke-6: 12.906.667 × 0,1% × 50 = 6.453.334", () => {
+    const row6 = hasil.find((r) => r.installment_no === 6);
+    expect(row6.total_denda).toBe(Math.round(12_906_667 * 0.001 * 50));
+  });
+
+  test("denda angsuran ke-7: 12.906.667 × 0,1% × 20 = 2.581.333", () => {
+    const row7 = hasil.find((r) => r.installment_no === 7);
+    expect(row7.total_denda).toBe(Math.round(12_906_667 * 0.001 * 20));
+  });
+
+  test("kontrak_no dan client_name benar di semua baris", () => {
+    hasil.forEach((row) => {
+      expect(row.kontrak_no).toBe("AGR00001");
+      expect(row.client_name).toBe("SUGUS");
+    });
+  });
+
+  test("hasil diurutkan berdasarkan installment_no (ascending)", () => {
+    expect(hasil[0].installment_no).toBeLessThan(hasil[1].installment_no);
+  });
+
+  test("semua angsuran yang sudah bayar (1-5) TIDAK masuk hasil", () => {
+    const angsuranKena = hasil.map((r) => r.installment_no);
+    [1, 2, 3, 4, 5].forEach((n) => {
+      expect(angsuranKena).not.toContain(n);
+    });
+  });
+
+  test("jika semua sudah bayar → tidak ada denda", () => {
+    const semuaBayar = new Set([1, 2, 3, 4, 5, 6, 7]);
+    const r = queryDendaKeterlambatan(
+      JADWAL_SOAL, "SUGUS", "AGR00001", "2024-08-14", semuaBayar
+    );
+    expect(r).toHaveLength(0);
   });
 });
