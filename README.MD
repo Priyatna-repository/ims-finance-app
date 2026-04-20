@@ -14,6 +14,8 @@ ims-finance-app/
 │   ├── components/
 │   │   ├── FormKredit.jsx      # Form input data kontrak
 │   │   ├── HasilKalkulasi.jsx  # Kartu ringkasan hasil
+|   |   ├── tabSoal2.jsx   # Tempo
+|   |   ├── tabSoal3.jsx   # Denda
 │   │   └── TabelJadwal.jsx     # Tabel jadwal angsuran
 │   ├── utils/
 │   │   └── kreditUtils.js      # Semua fungsi kalkulasi (murni JS)
@@ -131,3 +133,6 @@ Angsuran/bulan = (Pokok + Pokok × Bunga) / Jangka
 - **Auto Rename Tag** — rename JSX tag otomatis
 
 Install via Extensions panel (`Ctrl+Shift+X`), cari nama di atas.
+
+## 🚀 Live Demo
+🔗 https://calc-ims-finance.netlify.app/
