@@ -61,18 +61,18 @@ const total = sudahJatuhTempo.reduce(
               <tr>
                 <th>Kontrak No</th>
                 <th>Client Name</th>
-                <th className="right">Total Angsuran Jatuh Tempo</th>
-                <th className="center">Jumlah Angsuran</th>
+                <th>Total Angsuran Jatuh Tempo</th>
+                <th>Jumlah Angsuran</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>{result2.kontrak_no}</td>
                 <td>{result2.client_name}</td>
-                <td className="right mono result-highlight">
+                <td className="result-highlight">
                   {formatRupiah(result2.total_angsuran_jatuh_tempo)}
                 </td>
-                <td className="center">
+                <td>
                   <span className="angsuran-badge">{result2.jumlah_angsuran}</span>
                 </td>
               </tr>
@@ -116,10 +116,10 @@ const total = sudahJatuhTempo.reduce(
             <thead>
               <tr>
                 <th>Kontrak No</th>
-                <th className="center">Angsuran ke</th>
-                <th className="right">Angsuran / Bulan</th>
+                <th>Angsuran ke</th>
+                <th>Angsuran / Bulan</th>
                 <th>Tanggal Jatuh Tempo</th>
-                <th className="center">Status</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -128,14 +128,14 @@ const total = sudahJatuhTempo.reduce(
                 return (
                   <tr key={row.angsuran_ke} className={isJatuhTempo ? "row-jatuh-tempo" : ""}>
                     <td>{row.kontrak_no}</td>
-                    <td className="center">
+                    <td>
                       <span className={`angsuran-badge ${isJatuhTempo ? "badge-green" : ""}`}>
                         {row.angsuran_ke}
                       </span>
                     </td>
-                    <td className="right mono">{formatRupiah(row.angsuran_per_bulan)}</td>
+                    <td>{formatRupiah(row.angsuran_per_bulan)}</td>
                     <td>{row.tanggal_jatuh_tempo}</td>
-                    <td className="center">
+                    <td>
                       {isJatuhTempo
                         ? <span className="pill-success">Jatuh Tempo</span>
                         : <span className="pill-muted">Belum</span>}
@@ -149,7 +149,7 @@ const total = sudahJatuhTempo.reduce(
                 <td colSpan={2}>
                   <strong>Total Jatuh Tempo ({result2.jumlah_angsuran} angsuran)</strong>
                 </td>
-                <td className="right mono">
+                <td className="center mono">
                   <strong>{formatRupiah(result2.total_angsuran_jatuh_tempo)}</strong>
                 </td>
                 <td colSpan={2} />

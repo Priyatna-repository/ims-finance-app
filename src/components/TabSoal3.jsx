@@ -80,11 +80,11 @@ const hasilDenda = jadwal
               <tr>
                 <th>Kontrak No</th>
                 <th>Client Name</th>
-                <th className="center">Installment No</th>
+                <th>Installment No</th>
                 <th>Tgl Jatuh Tempo</th>
-                <th className="right">Angsuran/Bulan</th>
-                <th className="center">Hari Keterlambatan</th>
-                <th className="right">Total Denda</th>
+                <th>Angsuran/Bulan</th>
+                <th>Hari Keterlambatan</th>
+                <th>Total Denda</th>
               </tr>
             </thead>
             <tbody>
@@ -92,17 +92,17 @@ const hasilDenda = jadwal
                 <tr key={row.installment_no} className="row-overdue">
                   <td>{row.kontrak_no}</td>
                   <td>{row.client_name}</td>
-                  <td className="center">
+                  <td>
                     <span className="angsuran-badge badge-red">
                       {row.installment_no}
                     </span>
                   </td>
                   <td>{row.tanggal_jatuh_tempo}</td>
-                  <td className="right mono">{formatRupiah(row.angsuran_per_bulan)}</td>
-                  <td className="center">
+                  <td>{formatRupiah(row.angsuran_per_bulan)}</td>
+                  <td>
                     <span className="pill-danger">{row.hari_keterlambatan} hari</span>
                   </td>
-                  <td className="right mono denda-value">
+                  <td className="denda-value">
                     {formatRupiah(row.total_denda)}
                   </td>
                 </tr>
@@ -165,12 +165,12 @@ const hasilDenda = jadwal
             <thead>
               <tr>
                 <th>Kontrak No</th>
-                <th className="center">Angsuran ke</th>
-                <th className="right">Angsuran / Bulan</th>
+                <th>Angsuran ke</th>
+                <th>Angsuran / Bulan</th>
                 <th>Tanggal Jatuh Tempo</th>
-                <th className="center">Status</th>
-                <th className="center">Hari Telat</th>
-                <th className="right">Denda</th>
+                <th>Status</th>
+                <th>Hari Telat</th>
+                <th>Denda</th>
               </tr>
             </thead>
             <tbody>
@@ -185,26 +185,26 @@ const hasilDenda = jadwal
                 return (
                   <tr key={row.angsuran_ke} className={rowClass}>
                     <td>{row.kontrak_no}</td>
-                    <td className="center">
+                    <td>
                       <span className={`angsuran-badge ${badgeClass}`}>
                         {row.angsuran_ke}
                       </span>
                     </td>
-                    <td className="right mono">{formatRupiah(row.angsuran_per_bulan)}</td>
+                    <td>{formatRupiah(row.angsuran_per_bulan)}</td>
                     <td>{row.tanggal_jatuh_tempo}</td>
-                    <td className="center">
+                    <td>
                       {isLunas
                         ? <span className="pill-success">Lunas</span>
                         : isTerlambat
                         ? <span className="pill-danger">Terlambat</span>
                         : <span className="pill-muted">Belum jatuh tempo</span>}
                     </td>
-                    <td className="center">
+                    <td>
                       {isTerlambat
                         ? <span className="pill-danger">{dendaInfo.hari_keterlambatan} hari</span>
                         : <span style={{ color: "#adb5bd" }}>—</span>}
                     </td>
-                    <td className="right mono">
+                    <td>
                       {isTerlambat
                         ? <span className="denda-value">{formatRupiah(dendaInfo.total_denda)}</span>
                         : <span style={{ color: "#adb5bd" }}>—</span>}
