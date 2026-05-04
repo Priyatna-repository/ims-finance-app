@@ -1,8 +1,7 @@
 import React from "react";
 import { formatRupiah } from "../utils/kreditUtils";
 
-function TabSoal3({ dendaRows, jadwal, cutoffDate, sudahBayar }) {
-  const cutoff    = new Date(cutoffDate);
+function TabSoal3({ dendaRows, jadwal, sudahBayar }) {
   const totalHari = dendaRows.reduce((s, r) => s + r.hari_keterlambatan, 0);
   const totalDenda = dendaRows.reduce((s, r) => s + r.total_denda, 0);
 

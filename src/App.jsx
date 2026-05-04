@@ -137,7 +137,6 @@ function App() {
               <TabSoal3
                 dendaRows={result.dendaRows}
                 jadwal={result.jadwal}
-                cutoffDate={CUTOFF_DATE}
                 sudahBayar={SUDAH_BAYAR}
               />
             )}
