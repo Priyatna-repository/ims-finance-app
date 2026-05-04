@@ -1,21 +1,13 @@
-// ============================================================
-// Menampilkan hasil query Soal 3:
-// Denda keterlambatan per angsuran yang belum dibayar
-// ============================================================
-
 import React from "react";
 import { formatRupiah } from "../utils/kreditUtils";
 
-/**
- * TabSoal3 — menampilkan query SQL dan hasil denda soal 3.
- *
- * Props:
- * @param {Array} dendaRows - Array hasil dari queryDendaKeterlambatan()
- */
-function TabSoal3({ dendaRows }) {
-  // Hitung total keseluruhan untuk baris summary
+function TabSoal3({ dendaRows, jadwal, cutoffDate, sudahBayar }) {
+  const cutoff    = new Date(cutoffDate);
   const totalHari = dendaRows.reduce((s, r) => s + r.hari_keterlambatan, 0);
   const totalDenda = dendaRows.reduce((s, r) => s + r.total_denda, 0);
+
+  // Map installment_no → data denda untuk lookup O(1)
+  const dendaMap = new Map(dendaRows.map((r) => [r.installment_no, r]));
 
   return (
     <div>
@@ -78,7 +70,7 @@ const hasilDenda = jadwal
       </div>
 
       {/* ── Hasil Query ── */}
-      <div className="card">
+      <div className="card" style={{ marginBottom: "16px" }}>
         <p className="section-title">
           Hasil Query
           <span className="section-badge">per 14 Agustus 2024</span>
@@ -144,6 +136,92 @@ const hasilDenda = jadwal
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* ── Highlight Jadwal Angsuran ── */}
+      <div className="card">
+        <p className="section-title">
+          Visualisasi Status pada Jadwal Angsuran
+          <span className="section-badge">JADWAL_ANGSURAN</span>
+        </p>
+
+        <div className="table-legend">
+          <div className="legend-item">
+            <div className="legend-dot" style={{ background: "#bbf7d0", border: "1px solid #86efac" }} />
+            <span>Lunas — sudah dibayar tepat waktu</span>
+          </div>
+          <div className="legend-item">
+            <div className="legend-dot" style={{ background: "#fee2e2", border: "1px solid #fca5a5" }} />
+            <span>Terlambat — belum dibayar, kena denda</span>
+          </div>
+          <div className="legend-item">
+            <div className="legend-dot" style={{ background: "#f1f3f5", border: "1px solid #dee2e6" }} />
+            <span>Belum jatuh tempo</span>
+          </div>
+        </div>
+
+        <div className="table-wrapper">
+          <table className="jadwal-table">
+            <thead>
+              <tr>
+                <th>Kontrak No</th>
+                <th className="center">Angsuran ke</th>
+                <th className="right">Angsuran / Bulan</th>
+                <th>Tanggal Jatuh Tempo</th>
+                <th className="center">Status</th>
+                <th className="center">Hari Telat</th>
+                <th className="right">Denda</th>
+              </tr>
+            </thead>
+            <tbody>
+              {jadwal.map((row) => {
+                const isLunas      = sudahBayar.has(row.angsuran_ke);
+                const isTerlambat  = dendaMap.has(row.angsuran_ke);
+                const dendaInfo    = dendaMap.get(row.angsuran_ke);
+
+                const rowClass = isLunas ? "row-lunas" : isTerlambat ? "row-overdue" : "";
+                const badgeClass = isLunas ? "badge-green" : isTerlambat ? "badge-red" : "";
+
+                return (
+                  <tr key={row.angsuran_ke} className={rowClass}>
+                    <td>{row.kontrak_no}</td>
+                    <td className="center">
+                      <span className={`angsuran-badge ${badgeClass}`}>
+                        {row.angsuran_ke}
+                      </span>
+                    </td>
+                    <td className="right mono">{formatRupiah(row.angsuran_per_bulan)}</td>
+                    <td>{row.tanggal_jatuh_tempo}</td>
+                    <td className="center">
+                      {isLunas
+                        ? <span className="pill-success">Lunas</span>
+                        : isTerlambat
+                        ? <span className="pill-danger">Terlambat</span>
+                        : <span className="pill-muted">Belum jatuh tempo</span>}
+                    </td>
+                    <td className="center">
+                      {isTerlambat
+                        ? <span className="pill-danger">{dendaInfo.hari_keterlambatan} hari</span>
+                        : <span style={{ color: "#adb5bd" }}>—</span>}
+                    </td>
+                    <td className="right mono">
+                      {isTerlambat
+                        ? <span className="denda-value">{formatRupiah(dendaInfo.total_denda)}</span>
+                        : <span style={{ color: "#adb5bd" }}>—</span>}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+            <tfoot>
+              <tr className="total-row">
+                <td colSpan={5}><strong>Total Denda</strong></td>
+                <td className="center"><strong>{totalHari} hari</strong></td>
+                <td className="right mono"><strong>{formatRupiah(totalDenda)}</strong></td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
       </div>
     </div>

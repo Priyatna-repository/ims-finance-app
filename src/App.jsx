@@ -127,17 +127,26 @@ function App() {
               </>
             )}
             {activeTab === "soal2" && (
-              <TabSoal2 result2={result.result2} />
+              <TabSoal2
+                result2={result.result2}
+                jadwal={result.jadwal}
+                cutoffDate={CUTOFF_DATE}
+              />
             )}
             {activeTab === "soal3" && (
-              <TabSoal3 dendaRows={result.dendaRows} />
+              <TabSoal3
+                dendaRows={result.dendaRows}
+                jadwal={result.jadwal}
+                cutoffDate={CUTOFF_DATE}
+                sudahBayar={SUDAH_BAYAR}
+              />
             )}
           </>
         )}
       </main>
 
       <footer className="app-footer">
-        © 2026 PT. Inovasi Mitra Sejati — CONFIDENTIAL
+        Develop with Love by PRIYATNA © 2026 PT. Inovasi Mitra Sejati — CONFIDENTIAL
       </footer>
     </div>
   );

@@ -14,6 +14,9 @@ import { formatRupiah } from "../utils/kreditUtils";
  * @param {number} totalBayar  - Total seluruh pembayaran (Rp)
  */
 function TabelJadwal({ jadwal, totalBayar }) {
+  console.log("Render TabelJadwal dengan jadwal:", jadwal);
+  console.log("Render TabelJadwal dengan totalBayar:", totalBayar);
+  
   return (
     <div className="card">
       <h2 className="section-title">
