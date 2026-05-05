@@ -126,6 +126,7 @@ function FormKredit({ form, errors, onChange, onSubmit }) {
             id="start_date"
             name="start_date"
             type="date"
+            lang="en-CA"
             value={form.start_date}
             onChange={onChange}
             className={errors.start_date ? "input-error" : ""}
