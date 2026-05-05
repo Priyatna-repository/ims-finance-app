@@ -135,4 +135,4 @@ Angsuran/bulan = (Pokok + Pokok × Bunga) / Jangka
 Install via Extensions panel (`Ctrl+Shift+X`), cari nama di atas.
 
 ## 🚀 Live Demo
-🔗 https://calc-ims-finance.netlify.app/
+🔗 https://ims-finance-app.vercel.app/
